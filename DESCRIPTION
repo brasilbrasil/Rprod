@@ -2,11 +2,13 @@ Package: Rprod
 Title: R analysis output tracking and other reproducibility functions.
 Version: 0.0.0.9000
 Authors@R: 
-    person("Lucas", "Berio Fortini", , "lfortini@usgs.gov", role = c("aut"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package has a few random functions that should help improve tracing of past results/ improve the recroducibility of past analyses.
+    person("Lucas", "Berio Fortini", , "lfortini@usgs.gov", role = c("aut"))
+Maintainer: Lucas Fortini <lfortini@usgs.gov>
+Depends: R (>= 3.1.0), git2r
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
+Description: This package has a few random functions that should help improve tracing of past results/ improve the recroducibility of past analyses.
+License: GPL (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
