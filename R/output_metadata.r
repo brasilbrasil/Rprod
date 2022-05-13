@@ -24,8 +24,10 @@
 #' @export
 output_meta_data_fx=function(output_file_nm, script.dir=script.dir.info, script.name=script.name.info, get.script.line.number=T, notes=""){
   if (get.script.line.number){
-    savehistory(file = "temp.Rhistory")
-    jnk2=readLines("temp.Rhistory")
+    tmp_hist_file="temp.Rhistory"
+    savehistory(file = tmp_hist_file)
+    jnk2=readLines(tmp_hist_file)
+    unlink(tmp_hist_file)
     last_line=jnk2[length(jnk2)-1]
     last_line=trimws(last_line, which = c("both"))
     
