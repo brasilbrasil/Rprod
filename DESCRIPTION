@@ -2,7 +2,8 @@ Package: Rprod
 Title: R analysis output tracking and other reproducibility functions.
 Version: 0.0.0.9000
 Authors@R: 
-    person("Lucas", "Berio Fortini", , "lfortini@usgs.gov", role = c("aut"))
+    person("Lucas", "Fortini", "lfortini@usgs.gov", role = c("aut", "cre"))
+Author: Lucas Fortini [aut, cre]
 Maintainer: Lucas Fortini <lfortini@usgs.gov>
 Depends: R (>= 3.1.0), git2r
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
