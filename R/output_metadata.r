@@ -1,15 +1,26 @@
-#' create txt file with metadata for r output written to disk
+#' create text file with metadata for r output written to disk
 #'
 #' This function creates a txt file with metadata for any r output written to disk.
 #' The output should help reproducing the analysis as it lists r script file info
 #' along with info workstation info.
 #' 
 #'
-#' @param output_file_nm directory and file name of output
-#' @param script.dir directory of code repository (place it on top of r script)
-#' @param script.name.info name of script used to generate it (place it on top of r script)
+#' @param output_file_nm filepath of r outputs (place it as variable on top of r script)
+#' @param script.dir directory of code repository (place it as variable on top of r script as script.dir.info)
+#' @param script.name name of script used to generate it (place it on top of r script as script.name.info)
+#' @param get.script.line.number If true, try to find the line number in the existing script that the output is created at. This will likely not work in parallel environments.
 #' @param notes any text string to be added to the text file
 #' @return text file with same name as output file with a lot of metadata info
+#' @examples
+#' \donttest{ 
+#' #place these two at top of script
+#' script.dir.info="D:/code/reproducibility/example_use/example_repo/"
+#' script.name.info="example_script.r"
+#' 
+#' output_file_nm="test_csv_output3.csv" #output name (this must be unique line in this script)
+#' output_meta_data_fx(output_file_nm) #this will generate "test_csv_output3.csv.info.txt" metadata file
+#' write.csv(data.frame(index=c(1:10)), file = output_file_nm, row.names = F)
+#' }
 #' @export
 output_meta_data_fx=function(output_file_nm, script.dir=script.dir.info, script.name=script.name.info, get.script.line.number=T, notes=""){
   if (get.script.line.number){
@@ -35,19 +46,6 @@ output_meta_data_fx=function(output_file_nm, script.dir=script.dir.info, script.
   computer.sysname.info=Sys.info() ["sysname"][[1]]
   computer.release.info=Sys.info() ["release"][[1]]
   computer.info=paste(computer.sysname.info, computer.release.info)
-  
-  # #find location of script based on here package
-  # location_here=tryCatch({
-  #   options(warn=-1) #suppress warnings
-  #   location_here=here::here()
-  # }, warning = function(war) {
-  #   print(paste("MY_WARNING:  ",war))    
-  # }, error = function(err) {    
-  #   #print(paste("MY_ERROR:  ",err))
-  #   location_here="error"
-  # }, finally = {
-  #   options(warn=0)
-  # }) # END tryCatch
   
   ####################################
   #get git commit version!
