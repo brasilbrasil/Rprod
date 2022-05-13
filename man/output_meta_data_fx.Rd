@@ -2,7 +2,7 @@
 % Please edit documentation in R/output_metadata.r
 \name{output_meta_data_fx}
 \alias{output_meta_data_fx}
-\title{create txt file with metadata for r output written to disk}
+\title{create text file with metadata for r output written to disk}
 \usage{
 output_meta_data_fx(
   output_file_nm,
@@ -13,13 +13,15 @@ output_meta_data_fx(
 )
 }
 \arguments{
-\item{output_file_nm}{directory and file name of output}
+\item{output_file_nm}{filepath of r outputs (place it as variable on top of r script)}
 
-\item{script.dir}{directory of code repository (place it on top of r script)}
+\item{script.dir}{directory of code repository (place it as variable on top of r script as script.dir.info)}
+
+\item{script.name}{name of script used to generate it (place it on top of r script as script.name.info)}
+
+\item{get.script.line.number}{If true, try to find the line number in the existing script that the output is created at. This will likely not work in parallel environments.}
 
 \item{notes}{any text string to be added to the text file}
-
-\item{script.name.info}{name of script used to generate it (place it on top of r script)}
 }
 \value{
 text file with same name as output file with a lot of metadata info
@@ -28,4 +30,15 @@ text file with same name as output file with a lot of metadata info
 This function creates a txt file with metadata for any r output written to disk.
 The output should help reproducing the analysis as it lists r script file info
 along with info workstation info.
+}
+\examples{
+\donttest{ 
+#place these two at top of script
+script.dir.info="D:/code/reproducibility/example_use/example_repo/"
+script.name.info="example_script.r"
+
+output_file_nm="test_csv_output3.csv" #output name (this must be unique line in this script)
+output_meta_data_fx(output_file_nm) #this will generate "test_csv_output3.csv.info.txt" metadata file
+write.csv(data.frame(index=c(1:10)), file = output_file_nm, row.names = F)
+}
 }
